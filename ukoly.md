@@ -27,6 +27,15 @@ Vytvořte následující strom adresářů:
 │ │ ├── Dallas
 │ │ ├── Miami
 
+```bash
+mkdir America
+mkdir America/Canada
+mkdir America/Mexico
+mkdir America/USA
+mkdir America/USA/Chicago
+mkdir America/USA/Dallas
+mkdir America/USA/Miami
+```
 
 ÚKOL 4.1
 Zobrazte rekurzivně obsah adresáře America pro ověření hierarchie.
