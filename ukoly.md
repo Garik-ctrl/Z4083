@@ -9,7 +9,7 @@ zobrazte obsah každého souboru příkazem cat.
 mkdir project
 ```
 
-ÚKOL 3
+# ÚKOL 3
 Zobrazte obsah libovolného adresáře, a to rekurzivně. Zobrazte také podrobnosti o souborech a jejich velikosti v megabajtech.
 ```bash
 ls -R 
@@ -26,6 +26,7 @@ Vytvořte následující strom adresářů:
 │ │ ├── Chicago
 │ │ ├── Dallas
 │ │ ├── Miami
+
 
 ÚKOL 4.1
 Zobrazte rekurzivně obsah adresáře America pro ověření hierarchie.
