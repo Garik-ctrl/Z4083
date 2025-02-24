@@ -1,0 +1,68 @@
+1) Vypsat název, kontinent a populaci
+
+SELECT Name, Continent, Population 
+FROM country;
+--------------------------------------------------------------
+2) Top 10 největších měst dle populace
+
+SELECT Name, CountryCode, Population 
+FROM city
+ORDER BY Population DESC
+LIMIT 10;
+--------------------------------------------------------------
+3) Počet zemí v databázi
+
+SELECT COUNT(*) AS country_count 
+FROM country;
+--------------------------------------------------------------
+4) Výpis měst a jejich populace pro Českou Republiku
+
+SELECT Name, Population 
+FROM city
+WHERE CountryCode = 'CZE';
+--------------------------------------------------------------
+5) Počet měst v každé zemi
+
+SELECT CountryCode, COUNT(*) AS city_count
+FROM city
+GROUP BY CountryCode
+ORDER BY city_count DESC;
+--------------------------------------------------------------
+6) Počet oficiálních jazyků v každé zemi
+
+SELECT CountryCode, COUNT(*) AS language_count
+FROM countrylanguage
+WHERE IsOfficial = 'T'
+GROUP BY CountryCode
+ORDER BY language_count DESC;
+--------------------------------------------------------------
+7) Země, kde se mluví více než 5 různými jazyky
+
+SELECT c.Name, COUNT(cl.Language) AS LanguageCount
+FROM country c
+JOIN countrylanguage cl ON c.Code = cl.CountryCode
+GROUP BY c.Name
+HAVING COUNT(cl.Language) > 5;
+--------------------------------------------------------------
+8) Nejlidnatější město v každé zemi
+
+SELECT c1.Name AS Country, c2.Name AS Largest_City, c2.Population
+FROM country c1
+JOIN city c2 ON c1.Code = c2.CountryCode
+WHERE c2.Population = (SELECT MAX(Population) FROM city WHERE CountryCode = c1.Code);
+--------------------------------------------------------------
+9) Země, které mají vyšší HDP než průměr
+
+SELECT Name, GNP
+FROM country
+WHERE GNP > (SELECT AVG(GNP) FROM country);
+--------------------------------------------------------------
+10) Průměrná populace měst v každé zemi a celková populace země
+
+SELECT c.Name AS Country, c.Population AS Total_Population, 
+       AVG(ci.Population) AS Avg_City_Population
+FROM country c
+JOIN city ci ON c.Code = ci.CountryCode
+GROUP BY c.Name, c.Population
+ORDER BY Avg_City_Population DESC;
+--------------------------------------------------------------
